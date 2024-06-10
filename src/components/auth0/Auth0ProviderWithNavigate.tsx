@@ -1,5 +1,5 @@
 import { AppState, Auth0Provider } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type Props = {
   children: JSX.Element;
@@ -7,6 +7,7 @@ type Props = {
 
 export const Auth0ProviderWithNavigate = ({ children }: Props) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const domain = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -14,7 +15,7 @@ export const Auth0ProviderWithNavigate = ({ children }: Props) => {
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 
   const onRedirectCallback = (appState: AppState | undefined) => {
-    navigate(appState?.returnTo || window.location.pathname);
+    navigate(appState?.returnTo || location.pathname);
   };
 
   if (!(domain && clientId && redirectUri)) {

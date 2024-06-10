@@ -12,7 +12,7 @@ const RegistroButton = () => {
             returnTo: "/cliente/perfil",
           },
           authorizationParams: {
-            screen_hint: "signup", 
+            screen_hint: "signup",
           },
         })
       }
